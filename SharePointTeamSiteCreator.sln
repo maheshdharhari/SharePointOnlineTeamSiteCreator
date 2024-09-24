@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35230.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointTeamSiteCreator", "SharePointTeamSiteCreator\SharePointTeamSiteCreator.csproj", "{BF0E9B69-FA89-45D7-84AB-00B0392C158C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF0E9B69-FA89-45D7-84AB-00B0392C158C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF0E9B69-FA89-45D7-84AB-00B0392C158C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF0E9B69-FA89-45D7-84AB-00B0392C158C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF0E9B69-FA89-45D7-84AB-00B0392C158C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90BB5C66-34B6-4422-8D18-8B2514A229B6}
+	EndGlobalSection
+EndGlobal
