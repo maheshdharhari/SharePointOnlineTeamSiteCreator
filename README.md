@@ -44,7 +44,7 @@ The form allows the user to input:
 
 ## Screenshots
 
-![WinForms](https://res.cloudinary.com/maheshdharhari/image/upload/v1727165770/Blog/SharePointTeamSiteCreatorProject.png)
+![SharePointTeamSiteCreator](https://res.cloudinary.com/maheshdharhari/image/upload/v1727166926/Blog/SharePointOnlineTeamSiteCreatorProject.png)
 
 ### Form Interface
 ```
