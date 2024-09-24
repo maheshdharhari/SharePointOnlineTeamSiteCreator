@@ -53,7 +53,7 @@ Tenant ID:         [ txtTenantId ]
 Client Secret:     [ txtClientSecret ]
 Site Name:         [ txtSiteName ]
 Site Description:  [ txtSiteDescription ]
-                  [ Create Team Site Button ]
+Create Team Site:  [ btnCreateSite ]
 ```
 
 ## License
