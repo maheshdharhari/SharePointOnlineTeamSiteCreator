@@ -82,7 +82,7 @@ namespace SharePointTeamSiteCreator
                     };
 
                     var spoOperation = tenant.CreateSite(siteCreationInfo);
-                    clientContext.Load(spoOperation);
+                    clientContext.Load(spoOperation, i => i.IsComplete);
                     clientContext.ExecuteQuery();
                     // Check the operation status
                     while (!spoOperation.IsComplete)
