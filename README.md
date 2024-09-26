@@ -2,6 +2,8 @@
 
 This project demonstrates how to create SharePoint Online Classic Team Sites using **C#** and **WinForms** with **Multi-Factor Authentication (MFA)** integration. The application leverages **Microsoft Authentication Library (MSAL)** for secure authentication and **Client-Side Object Model (CSOM)** for site creation.
 
+![Running Project](https://res.cloudinary.com/maheshdharhari/image/upload/v1727340937/Blog/SharePointTeamSiteCreator.png "Running Project")
+
 ## Features
 - **WinForms Interface**: Allows users to enter site details (Admin URL, Tenant ID, Client ID, Site Name, etc.) via a simple GUI.
 - **Multi-Factor Authentication (MFA)**: Uses MSAL to enable secure MFA during login.
@@ -40,7 +42,7 @@ This project uses **Microsoft Authentication Library (MSAL)** to handle Multi-Fa
 This project is licensed under the MIT License. 
 
 ## Author
-This project is maintained by [Mahesh Kumar Yadav][contact@maheshyadav.com.np).
+This is created by [Mahesh Kumar Yadav](contact@maheshyadav.com.np).
 
 ## Contributions
 Contributions are welcome! Feel free to submit a pull request or open an issue for any improvements or bug fixes.
