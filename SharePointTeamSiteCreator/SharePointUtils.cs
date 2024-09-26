@@ -84,7 +84,14 @@ namespace SharePointTeamSiteCreator
                     var spoOperation = tenant.CreateSite(siteCreationInfo);
                     clientContext.Load(spoOperation);
                     clientContext.ExecuteQuery();
-
+                    // Check the operation status
+                    while (!spoOperation.IsComplete)
+                    {
+                        Console.WriteLine(@"Creating site... Please wait");
+                        System.Threading.Thread.Sleep(10000); // Wait for 30 seconds
+                        spoOperation.RefreshLoad();
+                        clientContext.ExecuteQuery();
+                    }
                     MessageBox.Show(@"Site has been created successfully.", Application.ProductName,
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
