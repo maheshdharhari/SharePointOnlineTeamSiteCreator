@@ -7,8 +7,28 @@ using Microsoft.Identity.Client;
 
 namespace SharePointTeamSiteCreator
 {
+    /// <summary>
+    /// Utility class that provides methods for SharePoint Online site creation using the Client-Side Object Model (CSOM)
+    /// and Multi-Factor Authentication (MFA) via Microsoft Authentication Library (MSAL).
+    /// </summary>
     internal static class SharePointUtils
     {
+        /// <summary>
+        /// Creates a new SharePoint Online Classic Team Site using Client-Side Object Model (CSOM) and MFA.
+        /// The method uses Microsoft Identity Client (MSAL) for authentication and creates the site using the 
+        /// Tenant administration API.
+        /// </summary>
+        /// <param name="adminSiteUrl">The SharePoint Online admin site URL.</param>
+        /// <param name="tenantId">The Azure Active Directory Tenant ID.</param>
+        /// <param name="clientId">The Azure AD app registration Client ID.</param>
+        /// <param name="siteStorageQuota">The storage quota in MB for the new site.</param>
+        /// <param name="siteUserCodeQuota">The user code quota for the new site.</param>
+        /// <param name="siteTitle">The title for the new SharePoint site.</param>
+        /// <param name="siteOwner">The owner of the new SharePoint site.</param>
+        /// <param name="siteUrl">The URL for the new SharePoint site.</param>
+        /// <param name="template">The template for the site (e.g., STS#0 for a classic team site).</param>
+        /// <param name="siteLanguage">The language locale ID for the site (default is 1033 for English).</param>
+        /// <returns>A Task representing the asynchronous site creation operation.</returns>
         internal static async Task CreateTeamSiteAuthentication(string adminSiteUrl, string tenantId, string clientId,
             long siteStorageQuota, long siteUserCodeQuota,
             string siteTitle, string siteOwner,
@@ -64,15 +84,6 @@ namespace SharePointTeamSiteCreator
                     var spoOperation = tenant.CreateSite(siteCreationInfo);
                     clientContext.Load(spoOperation);
                     clientContext.ExecuteQuery();
-                    // Check the operation status
-                    while (!spoOperation.IsComplete)
-                    {
-                        MessageBox.Show(@"Creating site... Please wait", Application.ProductName, MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-                        System.Threading.Thread.Sleep(30000); // Wait for 30 seconds
-                        spoOperation.RefreshLoad();
-                        clientContext.ExecuteQuery();
-                    }
 
                     MessageBox.Show(@"Site has been created successfully.", Application.ProductName,
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -85,6 +96,13 @@ namespace SharePointTeamSiteCreator
             }
         }
 
+        /// <summary>
+        /// Configures and returns a PublicClientApplication object for MSAL authentication.
+        /// This method sets the authority and client ID for authentication.
+        /// </summary>
+        /// <param name="tenantId">The Azure Active Directory Tenant ID.</param>
+        /// <param name="clientId">The Azure AD app registration Client ID.</param>
+        /// <returns>An IPublicClientApplication object used for acquiring authentication tokens.</returns>
         private static IPublicClientApplication GetPublicClientApp(string tenantId, string clientId)
         {
             try
