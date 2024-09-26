@@ -40,7 +40,7 @@ This project uses **Microsoft Authentication Library (MSAL)** to handle Multi-Fa
 This project is licensed under the MIT License. 
 
 ## Author
-This project is maintained by [Mahesh Kumar Yadav].
+This project is maintained by [Mahesh Kumar Yadav][contact@maheshyadav.com.np).
 
 ## Contributions
 Contributions are welcome! Feel free to submit a pull request or open an issue for any improvements or bug fixes.
