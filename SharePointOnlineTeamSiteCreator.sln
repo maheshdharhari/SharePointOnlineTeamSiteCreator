@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35230.96
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointTeamSiteCreator", "SharePointTeamSiteCreator\SharePointTeamSiteCreator.csproj", "{BF0E9B69-FA89-45D7-84AB-00B0392C158C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointOnlineTeamSiteCreator", "SharePointOnlineTeamSiteCreator\SharePointOnlineTeamSiteCreator.csproj", "{BF0E9B69-FA89-45D7-84AB-00B0392C158C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

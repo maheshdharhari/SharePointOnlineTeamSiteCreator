@@ -28,7 +28,7 @@ This project demonstrates how to create SharePoint Online Classic Team Sites usi
    - **Site Name**: The desired name for your team site.
    - **Site Owner**: The email address of the site owner.
    - **Site Description**: A brief description of the team site.
-5. Click **Create Site** to start the process. You will be prompted to authenticate, including MFA.
+5. Click **Create Team Site** to start the process. You will be prompted to authenticate, including MFA.
 6. The application will notify you once the site is created successfully.
 
 ## Authentication
