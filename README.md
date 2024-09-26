@@ -1,60 +1,46 @@
-# SharePoint Team Site Creator using C# WinForms
+# SharePoint Online Classic Team Site Creator with MFA
 
-This project demonstrates how to create a **Team Site** in **SharePoint Online** using a **C# WinForms application**. By leveraging the **Microsoft Graph API** and authenticating via **Azure AD**, users can easily create modern team sites with dynamic input for credentials and site details.
+This project demonstrates how to create SharePoint Online Classic Team Sites using **C#** and **WinForms** with **Multi-Factor Authentication (MFA)** integration. The application leverages **Microsoft Authentication Library (MSAL)** for secure authentication and **Client-Side Object Model (CSOM)** for site creation.
 
 ## Features
-- Create a **Team Site** in **SharePoint Online**.
-- User-friendly **WinForms** UI for inputting **Azure AD** credentials and site information.
-- Uses **Microsoft Graph API** for site creation.
-- **Azure AD Client Credentials Flow** for authentication.
+- **WinForms Interface**: Allows users to enter site details (Admin URL, Tenant ID, Client ID, Site Name, etc.) via a simple GUI.
+- **Multi-Factor Authentication (MFA)**: Uses MSAL to enable secure MFA during login.
+- **SharePoint Classic Team Site Creation**: Creates classic team sites using CSOM with the `STS#0` template.
+- **Status Tracking**: Polls the server to check the status of site creation until the process completes.
 
 ## Prerequisites
-1. **Azure AD App Registration**:
-   - Create an app in **Azure AD** with **Sites.FullControl.All** permissions.
-   - Obtain the **Client ID**, **Tenant ID**, and **Client Secret** for use in the application.
-   
-2. **Visual Studio**:
-   - Ensure **.NET Framework** is installed with **Windows Forms App** components.
+- Visual Studio (for building the project)
+- An Azure Active Directory app registration with the necessary permissions for SharePoint Online.
+- Installed NuGet packages:
+  - `Microsoft.SharePointOnline.CSOM`
+  - `Microsoft.Identity.Client (MSAL)`
 
-3. **NuGet Packages**:
-   - Install the following packages in the project:
-     - `Microsoft.Graph`
-     - `Microsoft.Identity.Client`
-
-## How to Run
-1. Clone this repository to your local machine.
+## How to Use
+1. Clone or download this repository.
 2. Open the solution in **Visual Studio**.
-3. Install the required **NuGet packages** (`Microsoft.Graph`, `Microsoft.Identity.Client`).
-4. Build the project and run it.
-5. Enter the **Azure AD** credentials (Client ID, Tenant ID, Client Secret) and the desired **Team Site** details in the form.
-6. Click "Create Team Site" to create the site in **SharePoint Online**.
+3. Build the project to restore the required NuGet packages.
+4. Run the application and enter the necessary details:
+   - **Admin Site URL**: The admin URL of your SharePoint tenant.
+   - **Tenant ID**: Your Azure AD tenant ID.
+   - **Client ID**: Your Azure AD app registration client ID.
+   - **Site Name**: The desired name for your team site.
+   - **Site Owner**: The email address of the site owner.
+   - **Site Description**: A brief description of the team site.
+5. Click **Create Site** to start the process. You will be prompted to authenticate, including MFA.
+6. The application will notify you once the site is created successfully.
 
-## Form Layout
-The form allows the user to input:
-- **Client ID** (Azure AD Client ID)
-- **Tenant ID** (Azure AD Tenant ID)
-- **Client Secret** (Azure AD Client Secret)
-- **Team Site Name**
-- **Team Site Description**
+## Authentication
+This project uses **Microsoft Authentication Library (MSAL)** to handle Multi-Factor Authentication. Users are required to authenticate interactively to acquire an access token, which is used for CSOM API calls.
 
-## How it Works
-- The application authenticates via the **Azure AD Client Credentials Flow**.
-- Using the **Microsoft Graph API**, it sends a request to create a **Team Site** with the provided information.
-- The user is notified once the site has been successfully created.
-
-## Screenshots
-
-![SharePointTeamSiteCreator](https://res.cloudinary.com/maheshdharhari/image/upload/v1727166926/Blog/SharePointOnlineTeamSiteCreatorProject.png)
-
-### Form Interface
-```
-Client ID:         [ txtClientId ]
-Tenant ID:         [ txtTenantId ]
-Client Secret:     [ txtClientSecret ]
-Site Name:         [ txtSiteName ]
-Site Description:  [ txtSiteDescription ]
-Create Team Site:  [ btnCreateSite ]
-```
+## Dependencies
+- [Microsoft.SharePointOnline.CSOM](https://www.nuget.org/packages/Microsoft.SharePointOnline.CSOM/)
+- [Microsoft.Identity.Client (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client/)
 
 ## License
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the MIT License. 
+
+## Author
+This project is maintained by [Mahesh Kumar Yadav].
+
+## Contributions
+Contributions are welcome! Feel free to submit a pull request or open an issue for any improvements or bug fixes.
