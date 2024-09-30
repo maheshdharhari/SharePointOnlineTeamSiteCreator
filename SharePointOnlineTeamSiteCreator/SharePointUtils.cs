@@ -30,9 +30,7 @@ namespace SharePointTeamSiteCreator
         /// <param name="siteLanguage">The language locale ID for the site (default is 1033 for English).</param>
         /// <returns>A Task representing the asynchronous site creation operation.</returns>
         internal static async Task CreateTeamSiteAuthentication(string adminSiteUrl, string tenantId, string clientId,
-            long siteStorageQuota, long siteUserCodeQuota,
-            string siteTitle, string siteOwner,
-            string siteUrl,
+            long siteStorageQuota, long siteUserCodeQuota, string siteTitle, string siteOwner, string siteUrl,
             string template = "STS#0", uint siteLanguage = 1033)
         {
             var scopes = new string[] { adminSiteUrl + "/.default" }; // Scopes
@@ -43,8 +41,7 @@ namespace SharePointTeamSiteCreator
             try
             {
                 // Use interactive authentication to sign in
-                authResult = await app.AcquireTokenInteractive(scopes)
-                    .ExecuteAsync().ConfigureAwait(false);
+                authResult = await app.AcquireTokenInteractive(scopes).ExecuteAsync().ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -92,6 +89,7 @@ namespace SharePointTeamSiteCreator
                         spoOperation.RefreshLoad();
                         clientContext.ExecuteQuery();
                     }
+
                     MessageBox.Show(@"Site has been created successfully.", Application.ProductName,
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
