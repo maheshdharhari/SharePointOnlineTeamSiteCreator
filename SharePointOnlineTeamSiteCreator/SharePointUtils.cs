@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Microsoft.SharePoint.Client;
 using Microsoft.Online.SharePoint.TenantAdministration;
 using Microsoft.Identity.Client;
+using System.Threading;
 
 namespace SharePointTeamSiteCreator
 {
@@ -85,7 +86,7 @@ namespace SharePointTeamSiteCreator
                     while (!spoOperation.IsComplete)
                     {
                         Console.WriteLine(@"Creating site... Please wait");
-                        System.Threading.Thread.Sleep(10000); // Wait for 30 seconds
+                        Thread.Sleep(10000); // Wait for 10 seconds
                         spoOperation.RefreshLoad();
                         clientContext.ExecuteQuery();
                     }
@@ -125,6 +126,91 @@ namespace SharePointTeamSiteCreator
                 MessageBox.Show(@"Error: " + ex.Message, Application.ProductName, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 throw;
+            }
+        }
+
+        /// <summary>
+        /// Asynchronously deletes a SharePoint site collection.
+        /// </summary>
+        /// <param name="adminSiteUrl">The URL of the SharePoint admin site.</param>
+        /// <param name="tenantId">The ID of the Azure tenant.</param>
+        /// <param name="clientId">The client ID of the application used for authentication.</param>
+        /// <param name="siteUrl">The URL of the site collection to be deleted.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        internal static async Task DeleteSiteCollection(string adminSiteUrl, string tenantId, string clientId,
+            string siteUrl)
+        {
+            // Define the scopes required for authentication
+            var scopes = new string[] { adminSiteUrl + "/.default" }; // Scopes
+
+            // Get the public client application using tenant ID and client ID
+            var app = GetPublicClientApp(tenantId, clientId);
+            AuthenticationResult authResult = null;
+
+            try
+            {
+                // Use interactive authentication to sign in and acquire an access token
+                authResult = await app.AcquireTokenInteractive(scopes).ExecuteAsync().ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                // Display error message if token acquisition fails
+                MessageBox.Show(@"Error acquiring token: " + ex.Message, Application.ProductName, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return; // Exit the method if authentication fails
+            }
+
+            // Access token retrieved successfully
+            var accessToken = authResult.AccessToken;
+
+            // Create a new ClientContext using the access token for making requests
+            using (var clientContext = new ClientContext(adminSiteUrl))
+            {
+                // Add the authorization header with the acquired token
+                clientContext.ExecutingWebRequest += (sender, webRequestEventArgs) =>
+                {
+                    webRequestEventArgs.WebRequestExecutor.RequestHeaders["Authorization"] =
+                        "Bearer " + accessToken;
+                };
+
+                // Initialize the Tenant object to manage site collection operations
+                var tenant = new Tenant(clientContext);
+
+                // Prepare to remove the specified site collection
+                var spoOperation = tenant.RemoveSite(siteUrl);
+
+                // Load the operation status to check its progress
+                clientContext.Load(spoOperation);
+                clientContext.ExecuteQuery();
+
+                Console.WriteLine(@"Time: " + DateTime.Now);
+
+                // Poll for completion of the deletion operation
+                while (!spoOperation.IsComplete)
+                {
+                    // Wait for 2 seconds before checking the status again
+                    Thread.Sleep(10000);
+                    clientContext.Load(spoOperation);
+                    clientContext.ExecuteQuery();
+                    Console.WriteLine(@"Site deletion status: " + (spoOperation.IsComplete ? "waiting" : "complete"));
+                }
+
+                Console.WriteLine(@"Time: " + DateTime.Now);
+                Console.WriteLine(@"Verify that site no longer shows up in getSiteProperties");
+
+                // Attempt to verify that the site has been deleted
+                try
+                {
+                    var site = tenant.GetSitePropertiesByUrl(siteUrl, false);
+                    clientContext.Load(site);
+                    clientContext.ExecuteQuery();
+                    Console.WriteLine(@"Site is not deleted"); // Site still exists
+                }
+                catch (ServerException e)
+                {
+                    // If the site is not found, it has been successfully deleted
+                    Console.WriteLine(@"Cannot find the active site: " + e.Message);
+                }
             }
         }
     }

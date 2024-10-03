@@ -59,6 +59,8 @@ namespace SharePointTeamSiteCreator
                           siteDisplayName.Replace(" ", string.Empty).ToLower();
             await SharePointUtils.CreateTeamSiteAuthentication(adminSiteUrl, tenantId, clientId, SiteStorageQuota,
                 SiteUserCodeQuota, siteDisplayName, siteOwner, siteUrl, SiteTemplate, SiteLanguage);
+            
+            /*await SharePointUtils.DeleteSiteCollection(adminSiteUrl, tenantId, clientId, siteUrl);*/
         }
     }
 }
