@@ -1,6 +1,6 @@
 ﻿namespace SharePointTeamSiteCreator
 {
-    partial class Form1
+    partial class CreateTeamSite
     {
         /// <summary>
         /// Required designer variable.

@@ -10,7 +10,7 @@ namespace SharePointTeamSiteCreator
     /// Site Name, Site Owner, and Site Description, and triggers the site creation process
     /// by calling the SharePointUtils class.
     /// </summary>
-    public partial class Form1 : Form
+    public partial class CreateTeamSite : Form
     {
         /// <summary>
         /// Constant representing the template for a SharePoint Classic Team Site (STS#0).
@@ -35,7 +35,7 @@ namespace SharePointTeamSiteCreator
         /// <summary>
         /// Initializes a new instance of the Form1 class and sets up the form components.
         /// </summary>
-        public Form1()
+        public CreateTeamSite()
         {
             InitializeComponent();
         }
