@@ -30,8 +30,6 @@
         {
             this.btnCreateSite = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtSiteDescription = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +37,8 @@
             this.txtAdminSiteUrl = new System.Windows.Forms.TextBox();
             this.txtTenantId = new System.Windows.Forms.TextBox();
             this.txtClientId = new System.Windows.Forms.TextBox();
+            this.txtSiteDescription = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtSiteDisplayName = new System.Windows.Forms.TextBox();
             this.textSiteOwner = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -88,23 +88,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(412, 216);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // txtSiteDescription
-            // 
-            this.txtSiteDescription.Location = new System.Drawing.Point(90, 133);
-            this.txtSiteDescription.Multiline = true;
-            this.txtSiteDescription.Name = "txtSiteDescription";
-            this.txtSiteDescription.Size = new System.Drawing.Size(318, 51);
-            this.txtSiteDescription.TabIndex = 11;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 130);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Site &Description";
             // 
             // label4
             // 
@@ -163,6 +146,23 @@
             this.txtClientId.Size = new System.Drawing.Size(318, 20);
             this.txtClientId.TabIndex = 5;
             // 
+            // txtSiteDescription
+            // 
+            this.txtSiteDescription.Location = new System.Drawing.Point(90, 133);
+            this.txtSiteDescription.Multiline = true;
+            this.txtSiteDescription.Name = "txtSiteDescription";
+            this.txtSiteDescription.Size = new System.Drawing.Size(318, 51);
+            this.txtSiteDescription.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 130);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Site &Description";
+            // 
             // txtSiteDisplayName
             // 
             this.txtSiteDisplayName.Location = new System.Drawing.Point(90, 107);
@@ -194,7 +194,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Create Team Site";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
